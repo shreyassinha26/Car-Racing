@@ -1,16 +1,18 @@
 class Form{
     constructor(){
-        
+        this.title;
+        this.greeting;
+        this.reset = createButton("Reset");
     }
     display(){
-        var title = createElement("h2");
-        title.html("Car Racing Game");
-        title.position(230 , 100);
+        this.title = createElement("h2");
+        this.title.html("Car Racing Game");
+        this.title.position(displayWidth/2-100 , displayHeight/10);
         var input = createInput("name");
         var button = createButton("play");
-        var greeting = createElement("h3");
-        input.position(250 , 260);
-        button.position(350 , 300);
+        this.greeting = createElement("h1");
+        input.position(displayWidth/2-100 , displayHeight/5);
+        button.position(displayWidth/2-100 , displayHeight/3);
         button.mousePressed(()=>{
             input.hide();
             button.hide();
@@ -26,9 +28,15 @@ class Form{
             //player.update( name);
             //player.updateCount(playerCount);
             
-            greeting.html("Hello " + player.name);
-            greeting.position(230 , 280);
+            this.greeting.html("Hello " + player.name);
+            this.greeting.position(displayWidth/2-100 , displayHeight/2-100);
+            clicked = true;
         } ); 
+        this.reset.position(displayWidth-100 , 20);
+        this.reset.mousePressed(()=>{
+            player.updateCount(0);
+            game.update(0);
+        });
         /*function (){
             input.hide();
             button.hide();
@@ -43,7 +51,10 @@ class Form{
             greeting.position(230 , 280);
         }*/
     }
-    hideGreeting(){
+    hide(){
         this.greeting.hide();
+        this.title.hide();
+
     }
+
 }
